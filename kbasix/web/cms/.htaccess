@@ -1,0 +1,43 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+<Files ".htaccess">
+  deny from all
+</Files>
+
+<Files "aux.py">
+  deny from all
+</Files>
+
+<Files "defs.py">
+  deny from all
+</Files>
+
+<Files "manage_kbasix.py">
+  deny from all
+</Files>
+
+<Files "manage_users.py">
+  deny from all
+</Files>
+
+# The limit on the file size upload is actually enforced here, regardless
+# of what "upload['size_limit_']" in "defs.py" says (the latter is just
+# for informational purposes, and of course should match the value set
+# below). Note the same limit needs to be specified twice (in bytes).
+
+LimitRequestBody 8388608
+ErrorDocument 413 /cms/upload.py/process?file_limit=8388608
+ErrorDocument 500 "Unable to complete the requested action"
+
+# Uncomment the following block to disallow client caching (not recommended).
+#
+#<filesMatch "\.py">
+#<ifModule mod_headers.c>
+#Header set Cache-Control "no-store"
+#</ifModule>
+#</filesMatch>
+#
+# Uncomment the previous block to disallow client caching (not recommended).
+

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--
+HTML template for the KBasix CMS: main (welcome) page.
+Created by: Pamela Brittain
+            James Colliander
+            Marco De la Cruz-Heredia
+            Emile LeBlanc
+Coded by: Marco De la Cruz-Heredia (marco@math.utoronto.ca)
+
+Copyright (c) 2012, Department of Mathematics, University of Toronto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The KBasix CMS</title>
+  <style type="text/css">
+   @import url(/cms/kbasix.css);
+  </style>
+  <link href="/cms/main.css" rel="stylesheet">
+  %(mathjax_script)s
+</head>
+
+<body>
+%(main_header)s
+<div class="content">
+  <article>
+    <h1 class="title">Welcome to KBasix</h1>
+    <h2>Introduction</h2>
+    <p>This is the KBasix CMS system. It provides basic authentication
+    and file-management capabilities, together with a simple set of ACL
+    controls. It also supports mathematical notation via
+    <a href="http://www.mathjax.org">MathJax</a>:</p>
+
+    $$e^{i \pi} + 1 = 0$$
+
+    <div class="left_col">
+    <h2>Basic features</h2>
+    <ul>
+      <li>Internal authentication (LDAP too)</li>
+      <li>File uploads, with quotas</li>
+      <li>Flexible, human-readable metadata</li>
+      <li>Supports user and group ACLs (read-only)</li>
+      <li>Does not use cookies</li>
+      <li>Javascript is optional (but needed for MathJax)</li>
+      <li>File-based database</li>
+      <li>Command-line backend</li>
+      <li>Written in Python</li>
+      <li>BSD license</li>
+    </ul>
+    </div>
+    <div class="right_col">
+    <h2>Requirements</h2>
+    <ul>
+      <li>RHEL 6 or CentOS 6 (tested under Red Hat Enterprise Linux)</li>
+      <li>An Apache webserver</li>
+      <li>The following modules: mod_python and mod_ssl</li>
+      <li>The Python programming language</li>
+    </ul>
+    <h2>Download</h2>
+    <p>
+      Two packages are offered, with and without MathJax:
+      <ul>
+	<li><a href="https://www.math.utoronto.ca/marco/kbasix_m.tbz2">KBasix w/MathJax</a> (7.6MB)</li>
+	<li><a href="https://www.math.utoronto.ca/marco/kbasix.tbz2">KBasix</a> (61KB)</li>
+      </ul>
+    </p>
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <h2>Installation</h2>
+    <p>
+      Note: KBasix is <b>BETA</b> software, it's currently being tested
+      and developed. Use at your own risk! Bug and security reports
+      welcomed at
+      <a href="mailto:marco@math.utoronto.ca?subject=KBasix report">marco@math.utoronto.ca</a>.
+    </p>
+    <p>
+      Extracting the downloaded bundle by means of
+      <code class="inl">tar -jxvf kbasix_m.tbz2</code> yields the following
+      file hierarchy:
+    </p>
+     <pre class="code">
+        kbasix
+          |-files
+          |   |_shared
+          |       |_local
+          |-logs
+          |-sys
+          |_web
+             |-cms
+             |-MathJax
+             |_users</pre>
+     <p>
+     (don't forget to do
+      <code class="inl">chown -R webuser:webgroup kbasix</code>, where
+      <code class="inl">webuser</code> and
+      <code class="inl">webgroup</code> are the user and group Apache
+      runs as). This example shows the contents of the MathJax bundle,
+      but it's optional and can be disabled from
+      <code class="inl">defs.py</code>.
+     </p>
+     <p>
+       All user-uploaded files are stored in <code class="inl">files</code>,
+       and <code class="inl">logs</code> is self-explanatory.
+       The <code class="inl">sys</code> directory contains the user and
+       group information files in <a href="http://www.json.org">JSON</a>
+       format. None of these should be directly accessible through
+       the web server. The <code class="inl">web</code> directory, on the
+       other hand, should be made <code class="inl">DocumentRoot</code>
+       in <code class="inl">httpd.conf</code> (e.g.
+       <code class="inl">DocumentRoot /www/kbasix/web</code>).
+       Furthermore, the following two directives should be set:
+       <code class="inl">Options SymLinksifOwnerMatch</code> and
+       <code class="inl">AllowOverride All</code>. KBasix
+       proper is stored in <code class="inl">cms</code>. Files which
+       the users have shared with the world are symlinked within subdirectories
+       inside <code class="inl">users</code> so that, for example, user
+       "Sora" can make her files accessible at
+       <code class="inl">https://www.mykbsite.org/users/Sora</code>
+       (assuming the site is hosted at
+       <code class="inl">www.mykbsite.org</code>).
+     </p>
+     <p>
+       You can now configure KBasix by editing the
+       <code class="inl">defs.py</code> file inside
+       <code class="inl">cms</code> (make sure not to leave any backup
+       files behind e.g. <code class="inl">defs.py~</code>).
+       The file is documented, but in the
+       simplest case suffice to set the variables
+       <code class="inl">kbasix_root_</code> and
+       <code class="inl">kbasix_url_</code> near the top of the defintions
+       to their proper values (in this example they'd be
+       <code class="inl">/www/kbasix</code> and
+       <code class="inl">https://www.mykbsite.org</code>, respectively).
+     </p>
+     <p>
+       Finally, edit the CSS/HTML files to taste (probably not needed for
+       now).
+       For extra security it's a good idea to narrow permissions and make
+       some files and directories immutable. Running the following (as
+       <code class="inl">root</code>) is recommended:
+     </p>
+     <pre class="code">
+       zsh -f
+       chmod 600 kbasix/**/*(.)
+       chmod 600 kbasix/**/.htaccess
+       chmod 700 kbasix/**/*(/)
+       chmod 700 kbasix
+       chattr +i kbasix/**/.htaccess
+       chattr +i kbasix/web/*(.)
+       chattr +i kbasix/web
+       chattr -R +i kbasix/web/cms
+       chattr +i kbasix</pre>
+     <p>
+      To access the CMS make sure the Apache web server is up and running.
+      KBasix will only
+      work through an encrypted connection, so having an SSL certificate
+      is nice (but not required). What is important is that the
+      <code class="inl">ssl.conf</code> file be
+      <a href="http://httpd.apache.org/docs/trunk/ssl/ssl_howto.html">properly configured</a>. Assuming that's been done, and that the URL is
+      <code class="inl">https://www.mykbsite.org</code>, it is now necessary
+      to configure <code class="inl">python.conf</code> as follows:
+    </p>
+     <pre class="code">
+        &lt;Directory /www/kbasix/web&gt;
+          AddHandler python-program .py
+          PythonHandler mod_python.publisher
+          PythonDebug Off
+        &lt;/Directory&gt;</pre>
+    <p>
+      (to aid debugging on a non-production server one can set
+      <code class="inl">PythonDebug On</code>). Restart Apache
+      and if all goes well KBasix should be reachable at:
+      <code class="inl">https://www.mykbsite.org</code>
+    </p>
+    <p>
+      Run <code class="inl">tail -F</code> on the KBasix log in the
+      <code class="inl">logs</code> directory to keep track of what's
+      going on. The default level in <code class="inl">defs.py</code>
+      is <code class="inl">debug</code>. Click on
+      the <code class="inl">Register</code> button at the top of the CMS
+      to create a KBasix account.
+    </p>
+
+    <h2>KBasix Manual</h2>
+    <p>
+      There isn't a user or administrator guide (yet). Overall configuration
+      is done by editing <code class="inl">defs.py</code> (which is
+      fairly well documented). The entire KBasix CMS can easily be
+      relocated by simply moving the <code class="inl">kbasix/</code>
+      hierarchy (and changing the <code class="inl">kbasix_root_</code>
+      and <code class="inl">kbasix_url_</code> settings in
+      <code class="inl">defs.py</code>). A KBasix installation can be
+      backed up with a simple <code class="inl">tar</code> or
+      <code class="inl">rsync</code> of <code class="inl">kbasix/</code>.
+    </p>
+    <p>
+      KBasix has no concept of an administrator at the GUI level (although
+      one can certainly be written). Low-level administration is through the
+      command line. To use it, <code class="inl">cd</code> into
+      <code class="inl">kbasix/web/cms</code> and run
+      <code class="inl">python</code>. The two main administration
+      modules are <code class="inl">manage_users</code> and
+      <code class="inl">manage_kbasix</code>. A brief sample session is
+      as follows:
+    </p>
+     <pre class="code">
+     # whoami
+     webuser
+     # pwd
+     /www/kbasix/web/cms
+     # python
+     Python 2.6.6 (r266:84292, May  1 2012, 13:52:17)
+     [GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux2
+     Type "help", "copyright", "credits" or "license" for more information.
+     &gt;&gt;&gt; import manage_users
+     &gt;&gt;&gt; import manage_kbasix
+     &gt;&gt;&gt; manage_users._finger()
+     [u'acky', u'nana', u'sora', u'yuma']
+     &gt;&gt;&gt; manage_kbasix._finger('yuma')
+     {u'last_login': 1345738231.8814499,
+      u'login_name': u'yuma',
+      u'quota': 1048576,
+      u'registered': 1344365184.5450959,
+      u'user_email': u'yuma-a@hello.av.jp',
+      u'user_name': u'YumA'}
+     &gt;&gt;&gt; print(manage_users._mod.__doc__)
+     Modify a user or a group.
+     
+            (OK, status) = _mod(name, settings, is_type='account')
+      
+         'name' is either a login or group name. The 'is_type' parameter can
+         be 'account' or 'group'. User/group properties are modified via the
+         'settings' dictionary, the keys of which correspond to those from
+         the '_user_add'/'_group_add' functions (unknown keys are ignored).
+         Return is (bool, str).
+     
+     &gt;&gt;&gt;</pre>
+     <p>
+       Notable functions available from
+       <code class="inl">manage_users</code> are:
+     </p>
+     <pre class="code">
+       _user_add
+       _authenticate
+       _group_add
+       _del
+       _mod
+       _info
+       _finger</pre>
+     <p>
+       And from <code class="inl">manage_kbasix</code>:
+     </p>
+     <pre class="code">
+      _account_add
+      _account_mod
+      _account_del
+      _account_info
+      _finger</pre>
+     <p>
+       Information about these functions can be easily obtained by via
+       <code class="inl">.__doc__</code>. KBasix is offered with icons by
+       <a href="http://www.famfamfam.com/lab/icons/silk/">Mark James</a>.
+     </p>
+</article>
+</div>
+%(main_footer_)s
+</body>
+</html>

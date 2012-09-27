@@ -1,0 +1,182 @@
+/*
+CSS style for the KBasix CMS: overall look.
+Created by: Pamela Brittain
+            James Colliander
+            Marco De la Cruz-Heredia
+            Emile LeBlanc
+Coded by: Marco De la Cruz-Heredia (marco@math.utoronto.ca)
+
+Copyright (c) 2012, Department of Mathematics, University of Toronto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+*/
+
+/*
+References:
+  http://kb.mozillazine.org/Em_units_versus_ex_units
+*/
+
+html {
+  font-size: 100%;
+}
+
+header {
+  margin-top: 2ex;
+}
+
+footer {
+  font-size: 80%;
+  text-align: right;
+  margin-top: 5ex;
+}
+
+body {
+  font-family: sans-serif;
+  color: #192c4d;
+  background: #ffffff;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+nav {
+  border: 1px solid #822000;
+  border-radius: 5px;
+}
+
+nav ul {
+  display: inline-block;
+  padding-left: 1ex;
+}
+
+nav li {
+  display: inline;
+  margin-right: 3ex;
+}
+
+.logo {
+  padding-top: 1ex;
+  padding-bottom: 1ex;
+  margin-left: 1ex;
+  vertical-align: middle;
+}
+
+nav a {
+  color: #192c4d;
+}
+
+nav a:hover {
+  color: #822000;
+}
+
+.nav_right {
+  display: inline-block;
+  margin-right: 3ex;
+  float: right;
+}
+
+.title {
+  font-size: 150%;
+  margin-top: 2ex;
+  margin-bottom: 2ex;
+  letter-spacing: 1px;
+}
+
+label {
+  width: 15ex;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 1ex;
+}
+
+fieldset {
+  border-top: 1px solid #822000;
+  border-bottom: 1px solid #822000;
+  border-left: 0px;
+  border-right: 0px;
+  margin-bottom: 2ex;
+  padding: 1ex;
+}
+
+legend {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+textarea {
+  width: 60ex;
+}
+
+.inline {
+  height: 2.5ex;
+}
+
+.multiline {
+  height: 10ex;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+.information {
+  color: blue;
+}
+
+.warning {
+  color: orange;
+}
+
+.fail {
+  color: red;
+}
+
+.nav_header_form {
+  display: inline;
+}
+
+.nav_header_input {
+  font-family: sans-serif;
+  font-size: 106%;
+  color: #192c4d;
+  background: #ffffff;
+  border: none;
+  text-align: center;
+}
+
+.nav_header_input:hover {
+  color: #822000;
+  cursor: pointer;
+}

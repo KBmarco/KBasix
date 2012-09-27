@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+HTML template for the KBasix CMS: file manager page.
+Created by: Pamela Brittain
+            James Colliander
+            Marco De la Cruz-Heredia
+            Emile LeBlanc
+Coded by: Marco De la Cruz-Heredia (marco@math.utoronto.ca)
+
+Copyright (c) 2012, Department of Mathematics, University of Toronto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>File Manager</title>
+  <style type="text/css">
+   @import url(/cms/kbasix.css);
+  </style>
+  <link href="/cms/file_manager.css" rel="stylesheet">
+   %(mathjax_script)s
+</head>
+
+<body>
+%(main_header)s
+<div class="content">
+  <article>
+    <h1 class="title">File Manager</h1>
+    <form action="process" method="post">
+      <input type="hidden" name="token" value="%(token)s" />
+      <p>You are currently using %(user_dir_size)s out of %(quota)s.</p>
+      <p class="sort_criteria_list">Sort by:
+      <select name="sort_criteria">
+        %(sort_criteria_list)s
+      </select></p>
+      <p class="option">Reverse
+      <input %(reverse)s type="checkbox" name="reverse" value="checked" /></p>
+      <p class="option">Hide files I don't own
+      <input %(hide_shared)s type="checkbox" name="hide_shared" value="checked" /></p>
+      <p class="option">Condensed view
+      <input %(condensed_view)s type="checkbox" name="condensed_view" value="checked" /></p>
+      <div class="sep">
+        <p class="keywords">Word filter:
+        <input class="keywords_input"
+               name="keywords"
+               value="%(keywords)s"
+               title="Word filter (case-insensitive on title and description)" /></p>
+      <p class="option">Select all
+      <input %(toggle_select)s type="checkbox" name="toggle_select" value="checked" /></p>
+        <p class="button">
+        <button type="submit" name="action" value="filter">Filter</button></p>
+      </div>
+    </form>
+    <form style="text-align: right; margin-right: 4ex;" id="bulk_delete" action="process" method="post">
+      <input type="hidden" name="token" value="%(token)s" />
+      <p class="button">
+      <button type="submit" name="action" value="confirm_bulk_delete">Delete selected</button></p>
+    </form>
+
+    <table>
+      %(file_list)s
+    </table>
+  </article>
+</div>
+%(main_footer_)s
+</body>
+</html>

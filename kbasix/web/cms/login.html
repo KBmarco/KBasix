@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+HTML template for the KBasix CMS: login page.
+Created by: Pamela Brittain
+            James Colliander
+            Marco De la Cruz-Heredia
+            Emile LeBlanc
+Coded by: Marco De la Cruz-Heredia (marco@math.utoronto.ca)
+
+Copyright (c) 2012, Department of Mathematics, University of Toronto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <style type="text/css">
+   @import url(/cms/kbasix.css);
+  </style>
+  <link href="/cms/login.css" rel="stylesheet">
+</head>
+
+<body>
+%(main_header)s
+<!--
+Testing how an undefined substitution show up
+%(foo)s
+-->
+<div class="content">
+  <article>
+    <h1 class="title">Login</h1>
+    <fieldset>
+      <legend>Please enter your user name and password</legend>
+      <form enctype="multipart/form-data" action="process" method="post">
+        <input type="hidden" name="referrer" value="%(referrer)s">
+        <label>User Name</label>
+          <input required name="user_name"
+                    title="Please specify your user name"><br>
+        <label>Password</label>
+          <input name="user_password"
+                    type="password"
+                    title="Remember you must use the password of the authentication service you chose (internal, LDAP, etc.)"><br>
+        <label>Forgot your password?</label>
+          <input type="checkbox" name="forgot_password" value="1" /> (check and click "Login")
+        <p>
+          <button type="submit" name="action" value="login">Login</button>
+        </p>
+      </form>
+    </fieldset>
+  </article>
+</div>
+%(main_footer_)s
+</body>
+</html>

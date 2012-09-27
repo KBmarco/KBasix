@@ -1,0 +1,77 @@
+/*
+CSS style for the KBasix CMS: main (welcome) page.
+Created by: Pamela Brittain
+            James Colliander
+            Marco De la Cruz-Heredia
+            Emile LeBlanc
+Coded by: Marco De la Cruz-Heredia (marco@math.utoronto.ca)
+
+Copyright (c) 2012, Department of Mathematics, University of Toronto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+*/
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.left_col {
+  float: left;
+  width: 48%;
+  display: inline-block;
+  margin-top: 1ex;
+}
+
+.right_col {
+  float: right;
+  width: 50%;
+  border-left: 1px solid;
+  margin-top: 1ex;
+  padding-left: 1ex;
+  display: inline-block;
+}
+
+.code {
+  margin-top: 25px;
+  padding: 7px;
+  background: #e0e0e0;
+  border-bottom: 1px solid #999999;
+  border-top: 1px solid #999999;
+}
+
+.inl {
+  font-size: 1.1em;
+  background: #e0e0e0;
+}
+
+.warn {
+  color: red;
+}
+
+.todo {
+  color: orange;
+}

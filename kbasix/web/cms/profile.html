@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+HTML template for the KBasix CMS: profile page.
+Created by: Pamela Brittain
+            James Colliander
+            Marco De la Cruz-Heredia
+            Emile LeBlanc
+Coded by: Marco De la Cruz-Heredia (marco@math.utoronto.ca)
+
+Copyright (c) 2012, Department of Mathematics, University of Toronto
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice,
+   this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>User Profile Page</title>
+  <style type="text/css">
+   @import url(/cms/kbasix.css);
+  </style>
+  <link href="/cms/profile.css" rel="stylesheet">
+</head>
+
+<body>
+%(main_header)s
+<div class="content">
+  <article>
+    <h1 class="title">User Profile</h1>
+    <fieldset>
+      <legend>Account information</legend>
+      <form enctype="multipart/form-data" action="process" method="post">
+        <input type="hidden" name="token" value="%(token)s">
+        <label>User Name</label> %(user_name)s
+        <br>
+        <label>First Name</label>
+          <input class="profile_firstname"
+                 name="first_name"
+                 value="%(first_name)s"
+                 title="First name" />
+        <br>
+        <label>Last Name</label>
+          <input class="profile_lasttname"
+                 name="last_name"
+                 value="%(last_name)s"
+                 title="Last name" />
+        <br>
+        <label>Email address</label>
+          <input class="profile_email"
+                 name="user_email"
+                 value="%(user_email)s"
+                 title="User email" />
+        <br>
+        <label>Password</label>
+          <input class="profile_input"
+                 title="Please type a password at least %(passwd_length_min)s characters long containing %(passwd_numbers_min)s numbers and %(passwd_letters_min)s letters"
+                 type="password"
+                 %(internal_disabled)s
+                 name="user_password" />
+        <br>
+        <label>Re-type password</label>
+          <input class="profile_input"
+                 title="Please type the same password as above"
+                 type="password"
+                 %(internal_disabled)s
+                 name="user_password_check" /><br>
+        <p>
+          Unless you are authorized otherwise, you must authenticate against an LDAP server.
+          You will then have to use the user name you specified above and your LDAP password to login:
+        </p>
+        <input %(use_ldap)s type="checkbox" name="use_ldap" value="1" />
+        <select name="ldap_server">
+          <option value="">LDAP server</option>
+          %(ldap_options)s
+        </select>
+        <p>
+        <label>LDAP login</label>
+          <input class="profile_ldap_login"
+                 name="user_ldap_name"
+                 value="%(user_ldap_name)s"
+                 title="Your name on the LDAP server" />
+        <br>
+        <label>LDAP password</label>
+          <input class="profile_input"
+                 title="Your password on the LDAP server"
+                 type="password"
+                 name="user_ldap_password" /> (just for verification, it will not be stored)
+        </p>
+        <p>
+          <button type="submit" name="action" value="update">Update profile</button>
+        </p>
+      </form>
+    </fieldset>
+  </article>
+</div>
+%(main_footer_)s
+</body>
+</html>
